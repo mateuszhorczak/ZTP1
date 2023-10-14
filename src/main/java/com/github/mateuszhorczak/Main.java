@@ -17,9 +17,9 @@ public class Main {
         connection3.set(10, 't');
         connection4.set(15, 'i');
 
-        System.out.println(connection1.get(0));
-        System.out.println(connection2.get(5));
-        System.out.println(connection3.get(10));
-        System.out.println(connection4.get(15));
+        System.out.println(connection4.get(0));
+        System.out.println(connection3.get(5));
+        System.out.println(connection2.get(10));
+        System.out.println(connection1.get(15));
     }
 }
