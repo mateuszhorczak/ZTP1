@@ -1,24 +1,38 @@
 package com.github.mateuszhorczak;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Base {
-    private char[] array = new char[100];
+    private final char[] array = new char[100];
 
+    private Base() {
+    }
 
     public static IConnection getConnection() {
         return Connection.getInstance();
     }
 
     private static class Connection implements IConnection {
-        private Base base;
+        private static Base base;
+
+        private static final Connection[] connections = {
+                new Connection(),
+                new Connection(),
+                new Connection()
+        };
+        private static int counter = 0;
+        private static boolean flag = false;
+
+        private Connection() {
+            if (!flag) {
+                base = new Base();
+                flag = true;
+            }
+        }
 
         public static IConnection getInstance() {
-            int counter = 0;
-            if (instance == null) {
-                instance = new Connection();
-            }
+            IConnection instance = connections[counter];
+            counter = ++counter % 3;
+            return instance;
         }
 
         public char get(int index) {
